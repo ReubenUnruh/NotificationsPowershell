@@ -70,7 +70,7 @@ function Send-Notification {
 
     # TODO: Move connection info to config file
     # TODO: Paramaterize query
-    $ComponentID = Invoke-Sqlcmd -Query "SELECT * FROM Test.dbo.Components WHERE Component = $Component;" -ServerInstance .
+    # $ComponentID = Invoke-Sqlcmd -Query "SELECT * FROM Test.dbo.Components WHERE Component = $Component;" -ServerInstance .
     
     # TODO: Insert into SQL and add a query failure message
     'Message added to notification history'
