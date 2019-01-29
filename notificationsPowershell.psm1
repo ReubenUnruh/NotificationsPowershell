@@ -77,9 +77,10 @@ function Send-Notification {
 
     # TODO: Get colors from SQL MessageType table
     $msgTypeColors = @{
-        'info' = 'good';
-        'warning' = 'warning';
-        'error' = 'danger'
+        'Warning' = 'warning';
+        'Error' = 'danger';
+        'Validation' = 'good';
+        'Debug' = 'good'
     }
 
     # TODO: If we can link to msgs from some Components, we could get URLs from SQL and prepend them to the ID here
