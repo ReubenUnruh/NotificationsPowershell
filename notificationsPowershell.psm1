@@ -5,6 +5,9 @@ Notifications Powershell Module
 Subscribe to and get notifications
 #>
 
+# TODO: Once we set these up for SQL we may want put each cmdlet into it's own
+# file because they'll get a lot longer.
+
 function Add-NotificationSubscription {
     [CmdletBinding()]
     param (
@@ -17,11 +20,11 @@ function Add-NotificationSubscription {
     )
     
     # TODO: Check each parameter entered by the user and warn them if their
-    # value is not valid
+    # value is not valid. If they have bad params we stop here.
 
     # TODO: Insert into SQL
 
-    # TODO: Add the other params to the CLI message if they were used
+    # TODO: Add the other params to this CLI message if they were used
     $Destination + ' will now receive notifications'
 }
 
@@ -61,9 +64,11 @@ function Send-Notification {
     )
     
     # TODO: Check each parameter entered by the user and warn them if their
-    # value is not valid. Although these seem like they'll be sent by scripts.
+    # value is not valid. Although these seem like they'll be sent by scripts
+    # so who's listening? We'll still need to throw out bad params before
+    # we join.
     
-    # TODO: Insert into SQL and a query failure message
+    # TODO: Insert into SQL and add a query failure message
     'Message added to notification history'
 
     # TODO: Get colors from SQL MessageType table
