@@ -67,6 +67,10 @@ function Send-Notification {
     # value is not valid. Although these seem like they'll be sent by scripts
     # so who's listening? We'll still need to throw out bad params before
     # we join.
+
+    # TODO: Move connection info to config file
+    # TODO: Paramaterize query
+    $ComponentID = Invoke-Sqlcmd -Query "SELECT * FROM Test.dbo.Components WHERE Component = $Component;" -ServerInstance .
     
     # TODO: Insert into SQL and add a query failure message
     'Message added to notification history'
