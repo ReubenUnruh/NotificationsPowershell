@@ -95,10 +95,11 @@ function Send-Notification {
     }
     "
 
+    # TODO: Check if utf-8 is the right charset
     $response = Invoke-WebRequest `
         -Headers @{
             'Authorization' = "Bearer $token";
-            'Content-type' = 'application/json' 
+            'Content-type' = 'application/json; charset=utf-8' 
         } `
         -Body $json `
         -Method Post `
