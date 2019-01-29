@@ -95,17 +95,27 @@ function Send-Notification {
     }
     "
 
-    # TODO: Move Slack channel and token to a separate file
-    Invoke-WebRequest `
+    $response = Invoke-WebRequest `
         -Headers @{
             'Authorization' = "Bearer $token";
             'Content-type' = 'application/json' 
         } `
         -Body $json `
         -Method Post `
-        -Uri 'https://slack.com/api/chat.postMessage' | Out-Null
+        -Uri 'https://slack.com/api/chat.postMessage'
 
-    'Message posted to Slack'
+    # Slack responds with 200 for some failed msgs (bad channel). Converting
+    # their json body to an object and checking 'ok' seems to work. Maybe we
+    # should check for 'error' instead though.
+    $content = $response.Content | ConvertFrom-Json
+
+    if ($response.StatusCode -eq 200 -and $content.ok) {
+        'Message posted to Slack'
+    }
+    else {
+        $response
+        "`r`nCouldn't post message to Slack"
+    }
 }
 
 
